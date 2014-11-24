@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dao.Database;
 import dao.Project;
+import dto.Bookings;
 import dto.FeedObjects;
 import dto.User;
 
@@ -50,6 +51,23 @@ public class ProjectManager {
 		}
 		
 		return user;
+	}
+	
+	public ArrayList<Bookings> getBookings(String username) throws Exception
+	{
+		ArrayList<Bookings> bookingsList = null;
+		
+		try
+		{
+			Project project = new Project();
+			bookingsList = project.getBookings(getDBConnection(), username);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
+		
+		return bookingsList;
 	}
 	
 	 

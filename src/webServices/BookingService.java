@@ -11,6 +11,7 @@ import model.ProjectManager;
 
 import com.google.gson.Gson;
 
+import dto.Bookings;
 import dto.FeedObjects;
 import dto.User;
 
@@ -68,7 +69,7 @@ public class BookingService {
     @GET
     @Path("/login/{username}/{password}")
     @Produces("application/json")
-    public String multipleParamTest(@PathParam("username") String username,
+    public String authenticateUser(@PathParam("username") String username,
                                     @PathParam("password") String password)
     {
         String jsonString = null;
@@ -95,7 +96,33 @@ public class BookingService {
         
         catch (Exception e)
         {
-            System.out.println("Exception Error"+e); //Console 
+            System.out.println("Exception "+e); //Console 
+        }
+        return jsonString;
+    }
+    
+    @GET
+    @Path("/bookings/{username}")
+    @Produces("application/json")
+    public String getBookings(@PathParam("username") String username)
+    {
+        String jsonString = null;
+        try
+        {
+            System.out.println("User Name sent: " + username);
+			ProjectManager projectManager= new ProjectManager();
+						
+			ArrayList<Bookings> bookingsList = new ArrayList<Bookings>();
+			bookingsList = projectManager.getBookings(username);
+			Gson gson = new Gson();
+			jsonString = gson.toJson(bookingsList);
+			System.out.println(jsonString);
+			
+        }
+        
+        catch (Exception e)
+        {
+            System.out.println("Exception "+e); //Console 
         }
         return jsonString;
     }
