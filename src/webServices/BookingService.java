@@ -1,6 +1,7 @@
 package webServices;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -112,12 +113,11 @@ public class BookingService {
             System.out.println("User Name sent: " + username);
 			ProjectManager projectManager= new ProjectManager();
 						
-			ArrayList<Bookings> bookingsList = new ArrayList<Bookings>();
+			HashMap<String, ArrayList> bookingsList = new HashMap<String, ArrayList>();
 			bookingsList = projectManager.getBookings(username);
 			Gson gson = new Gson();
 			jsonString = gson.toJson(bookingsList);
 			System.out.println(jsonString);
-			
         }
         
         catch (Exception e)

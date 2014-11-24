@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dao.Database;
 import dao.Project;
@@ -53,9 +54,9 @@ public class ProjectManager {
 		return user;
 	}
 	
-	public ArrayList<Bookings> getBookings(String username) throws Exception
+	public HashMap<String, ArrayList> getBookings(String username) throws Exception
 	{
-		ArrayList<Bookings> bookingsList = null;
+		HashMap<String, ArrayList> bookingsList = null;
 		
 		try
 		{
