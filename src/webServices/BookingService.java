@@ -134,7 +134,7 @@ public class BookingService {
     
     //19
     @GET
-    @Path("/allBookings/")
+    @Path("/allBookings")
     @Produces("application/json")
     public String getAllBookings()
     {
